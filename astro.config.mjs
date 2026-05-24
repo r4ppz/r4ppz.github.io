@@ -6,5 +6,6 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://r4ppz.github.io',
 	integrations: [svelte(), icon()],
 });
