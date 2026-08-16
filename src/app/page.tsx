@@ -1,4 +1,4 @@
-import { GitHubIcon } from '@/assets/icons/github-icon';
+import { FaGithub } from 'react-icons/fa6';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
 						rel="noopener noreferrer"
 						className={styles.link}
 					>
-						<GitHubIcon />
+						<FaGithub size={20} />
 						github.com/r4ppz
 					</a>
 				</div>
