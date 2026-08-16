@@ -1,11 +1,16 @@
-# build output
-dist/
-
-# generated types
-.astro/
-
 # dependencies
 node_modules/
+
+# next.js
+.next/
+out/
+
+# production
+build/
+
+# generated types
+next-env.d.ts
+*.tsbuildinfo
 
 # logs
 npm-debug.log*

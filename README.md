@@ -1,3 +1,1 @@
 # Personal Website
-
-Practice Svelte

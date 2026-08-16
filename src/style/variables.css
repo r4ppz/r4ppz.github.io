@@ -1,0 +1,32 @@
+:root {
+	/* colors */
+	--color-bg: #0a0a0b;
+	--color-text: #fafafa;
+	--color-text-muted: #a1a1aa;
+	--color-border: #27272a;
+	--color-gradient-start: #fafafa;
+	--color-gradient-end: #a1a1aa;
+
+	/* typography */
+	--font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+	--font-size-title: clamp(3rem, 8vw, 5rem);
+	--font-size-tagline: 1.125rem;
+	--font-size-link: 0.9rem;
+	--font-weight-title: 700;
+	--font-weight-tagline: 400;
+	--letter-spacing-title: -0.03em;
+	--line-height-title: 1.1;
+
+	/* spacing */
+	--spacing-page: 5rem;
+	--spacing-title: 0.5rem;
+	--spacing-tagline: 1.5rem;
+	--spacing-link-gap: 0.5rem;
+	--spacing-link-y: 0.6rem;
+	--spacing-link-x: 1.2rem;
+
+	/* layout */
+	--content-max-width: 700px;
+	--radius-link: 8px;
+	--duration-fast: 0.2s;
+}
