@@ -10,9 +10,9 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"lint": "eslint",
-		"format": "prettier --write .",
-		"format:check": "prettier --check .",
+		"lint": "eslint --cache",
+		"format": "prettier --write . --cache --cache-location .prettier-cache",
+		"format:check": "prettier --check . --cache --cache-location .prettier-cache",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {

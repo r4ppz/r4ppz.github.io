@@ -14,16 +14,27 @@ concurrency:
     group: pages
     cancel-in-progress: false
 
+env:
+    NODE_VERSION: 22
+
 jobs:
     build:
+        name: Build
         runs-on: ubuntu-latest
+        timeout-minutes: 10
         steps:
-            - uses: actions/checkout@v4
-            - uses: pnpm/action-setup@v4
-            - uses: actions/setup-node@v4
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
               with:
-                  node-version: 22
+                  node-version: ${{ env.NODE_VERSION }}
                   cache: pnpm
+
             - name: Cache Next.js build
               uses: actions/cache@v4
               with:
@@ -31,19 +42,44 @@ jobs:
                   key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}
                   restore-keys: |
                       ${{ runner.os }}-nextjs-
-            - run: pnpm install --frozen-lockfile
-            - run: pnpm build
-            - uses: actions/configure-pages@v5
-            - uses: actions/upload-pages-artifact@v3
+
+            - name: Cache ESLint
+              uses: actions/cache@v4
+              with:
+                  path: .eslintcache
+                  key: ${{ runner.os }}-eslint-${{ hashFiles('pnpm-lock.yaml', 'eslint.config.mjs') }}
+                  restore-keys: |
+                      ${{ runner.os }}-eslint-
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Lint
+              run: pnpm lint
+
+            - name: Check formatting
+              run: pnpm format:check
+
+            - name: Build
+              run: pnpm build
+
+            - name: Configure Pages
+              uses: actions/configure-pages@v5
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
               with:
                   path: out
 
     deploy:
+        name: Deploy
         runs-on: ubuntu-latest
         needs: build
+        timeout-minutes: 10
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         steps:
-            - id: deployment
+            - name: Deploy to GitHub Pages
+              id: deployment
               uses: actions/deploy-pages@v4
