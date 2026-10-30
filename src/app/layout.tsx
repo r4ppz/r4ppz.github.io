@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import '../style/global.css';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+import '@/styles/tokens.css';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
 	title: 'r4ppz',
@@ -14,7 +12,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en">
-			<body className={inter.variable}>{children}</body>
+			<body>{children}</body>
 		</html>
 	);
 }
