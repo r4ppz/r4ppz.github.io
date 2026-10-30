@@ -14,9 +14,6 @@ concurrency:
     group: pages
     cancel-in-progress: false
 
-env:
-    NODE_VERSION: 22
-
 jobs:
     build:
         name: Build
@@ -28,11 +25,13 @@ jobs:
 
             - name: Setup pnpm
               uses: pnpm/action-setup@v5
+              with:
+                  version: 12
 
             - name: Setup Node.js
               uses: actions/setup-node@v5
               with:
-                  node-version: ${{ env.NODE_VERSION }}
+                  node-version: 22
                   cache: pnpm
 
             - name: Cache Next.js build
